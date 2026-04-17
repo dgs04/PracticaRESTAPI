@@ -18,14 +18,11 @@ export const postUser = async (req, res) => {
 };
 
 export const putUser = async (req, res) => {
-    const id = req.params.id;
-    const { name, username, password } = req.body;
-    const user = await User.findByIdAndUpdate(id, { name, username, password }, { new: true });
+    const user = await User.findByIdandUpdate(req.params.id, {name, username, password}, {new: true});
     res.json(user);
 };
 
 export const delUser = async (req, res) => {
-    const id = req.params.id;
-    const user = await User.findByIdAndDelete(id);
-    res.json(user);
+    await User.findByIdAndDelete(req.params.id);
+    res.json({message: 'User deleted'});
 };
