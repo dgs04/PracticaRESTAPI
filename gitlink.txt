@@ -1,0 +1,5 @@
+https://github.com/dgs04/PracticaRESTAPI.git
+
+Usuario de prueba: Frumen
+
+Contraseña: 123
