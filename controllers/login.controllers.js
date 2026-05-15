@@ -1,5 +1,6 @@
 import User from "../models/users.models.js";
 import { verifyPassword } from "../utils/hash.js";
+import jwt from "jsonwebtoken";
 
 export const login = async (req, res) => {
   try {
@@ -29,9 +30,21 @@ export const login = async (req, res) => {
       });
     }
 
+    const token = jwt.sign(
+      {
+        id: user._id,
+        username: user.username
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h"
+      }
+    );
+
     res.json({
       isLogin: true,
       msg: "Login successful",
+      token,
       user: {
         _id: user._id,
         name: user.name,
